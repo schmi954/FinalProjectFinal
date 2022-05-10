@@ -18,42 +18,40 @@ def create_psswd():
     t = usernme[3:]
 
     psswdfst = t + y
-    psswdscnd = psswdfst.replace("e", "z")
-    psswdthrd = psswdscnd.replace("o", "f")
+    psswdfst = psswdfst.replace("e", "z")
+    psswdfst = psswdfst.replace("o", "f")
 
     #Here is where it write to the designated safe file to give you your password
     infile = input("What file would you like to receive your password in: ")
     f = open(infile, "w")
     f.write("Your password is: ")
     f.write("\n")
-    f.write(psswdthrd)
+    f.write(psswdfst)
     f.close()
     #Here is where I will call the username and password association function
     #and store the users given username and password values in the dictionary
-    updated_dic = {usernme: psswdthrd}
+    updated_dic = {usernme: psswdfst}
     logindic.update(updated_dic)
 
 
 def menu_structure():
+    print("MENU-------------")
     print("1. Login")
     print("2. Create")
     print("3. Exit")
 
 menu_structure()
-choice = int(input("1. Login / 2. Create account:   "))
+choice = int(input("Please select an option:   "))
 
+while choice != 3:
+    if choice == 1:
+        print("Choice 1")
+    elif choice == 2:
+        create_psswd()
+    else:
+        print("Please select one of the options")
 
+    menu_structure()
+    choice = int(input("Please select an option:   "))
 
-#Here is the initial decision arc
-choice = int(input("1. Login / 2. Create account:   "))
-while choice != 1 and choice != 2:
-    print("Please select one of the options listed")
-    choice = int(input("1. Login / 2. Create account:   "))
-
-#Here is where the logic happens for the choice
-if choice == 1:
-    print("choice was 1")
-
-elif choice == 2:
-    create_psswd()
-
+print("Now exiting program goodbye !")
