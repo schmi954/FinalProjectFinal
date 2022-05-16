@@ -16,16 +16,15 @@ class VideoClass:
 
 
 
-
-
-
-
-
-
 #This is the function for creating the dictionary username and password association
 def making_dictionary(lgdic, username, password):
     lgdic[username] = password
 
+def user_Video():
+    outfile = input("What file contains the youtube video you want to watch:  ")
+    j = open(outfile, "r")
+    videoSelection = j.readline()
+    print(videoSelection)
 
 #Create username and password function
 def create_psswd():
@@ -40,7 +39,7 @@ def create_psswd():
     psswdfst = psswdfst.replace("o", "f")
 
     #Here is where it write to the designated safe file to give you your password
-    infile = input("What file would you like to receive your password in: ")
+    infile = input("What file would you like to receive your password in:  ")
     f = open(infile, "w")
     f.write("Your password is: ")
     f.write("\n")
@@ -66,6 +65,7 @@ def login_structure():
 
 
 
+
 #Here I print the opening menu structure
 def menu_structure():
     print("MENU-------------")
@@ -81,6 +81,7 @@ choice = int(input("Please select an option:   "))
 while choice != 3:
     if choice == 1:
         login_structure()
+        user_Video()
         videofile = VideoClass()
         webbrowser.open(videofile.file)
 
