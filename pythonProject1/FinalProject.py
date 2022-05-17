@@ -8,8 +8,20 @@ print("Please select which option you would like")
 #Initial Dictionary
 logindic = {}
 
+#Here is my class where I store the video the user is able to watch if they are a member using the webbrowser library
 class VideoClass:
-    file = "https://www.youtube.com/watch?v=3o8w042VdOk"
+    def __init__(self, url, urlfile):
+        self.url = url
+        self.urlfile = urlfile
+#Here I am taking the users desired url and file to write to the file and then read from it using the url from the file
+    def user_Video(self):
+        z = open(self.urlfile, "w")
+        z.write(self.url)
+        z.close()
+        j = open(self.urlfile, "r")
+        videoselection = j.readline()
+        webbrowser.open_new(videoselection)
+
 
 
 
@@ -20,11 +32,7 @@ class VideoClass:
 def making_dictionary(lgdic, username, password):
     lgdic[username] = password
 
-def user_Video():
-    outfile = input("What file contains the youtube video you want to watch:  ")
-    j = open(outfile, "r")
-    videoSelection = j.readline()
-    print(videoSelection)
+
 
 #Create username and password function
 def create_psswd():
@@ -81,12 +89,13 @@ choice = int(input("Please select an option:   "))
 while choice != 3:
     if choice == 1:
         login_structure()
-        user_Video()
-        videofile = VideoClass()
-        webbrowser.open(videofile.file)
+        firsturl = input("Please enter in the Youtube Url you would like to play:  ")
+        secondoutfile = input("Please enter in the file you would like to store the url in:  ")
+        garfield = VideoClass(firsturl, secondoutfile)
+        garfield.user_Video()
 
 
-
+#If user selects choice 2 they create a new username and password
     elif choice == 2:
         create_psswd()
     else:
